@@ -36,7 +36,6 @@ function solve(input) {
         if (!pianist.hasOwnProperty()) {
             pianist[piece] = { composer: [composer], key: [key] };
         }
-        console.log(pianist);
     }
     for (const line of input) {
         let [comnand, ...items] = line.split(`|`);
@@ -45,6 +44,24 @@ function solve(input) {
         }
         action[comnand](...items);
     }
+    let sorted = Object.entries(pianist);
+
+    sorted.sort((a,b) => {
+        let pieceA = a[0];
+        let composerA = Object.values(a[1])
+        composerA = composerA[0].toString();
+        let pieceB = b[0];
+        let composerB = Object.values(b[1])
+        composerB = composerB[0].toString();
+
+        return pieceA.localeCompare(pieceB) || composerA.localeCompare(composerB)
+
+    })
+   
+  for (const line of sorted) {
+      let composer =  Object.values(line[1])
+      console.log(`${line[0]} -> Composer: ${composer[0].toString()}, Key: ${composer[1].toString()}`);
+  }
 }
 
 solve([
@@ -58,6 +75,8 @@ solve([
     'Remove|Clair de Lune',
     'ChangeKey|Moonlight Sonata|C# Major',
     'Stop'])
+
+    console.log(`--------`);
 solve([
     '4',
     'Eine kleine Nachtmusik|Mozart|G Major',
