@@ -1,11 +1,13 @@
-function solve ( ) {
+function Switch (mainString, firstString, secondString){
 
-    let Playlist = {}
+    let firstIndex = mainString.indexOf(firstString[0])
+    let lastIndex = mainString.indexOf(firstString[firstString.length-1])
 
-    Playlist[`Koljo`][`Petur`] = `andrey`
+    let firstHalf = mainString.slice(0,firstIndex);
+    let secondHalf = mainString.slice(Num(lastIndex)+1)
 
-    console.log(Playlist);
-
+    console.log(firstHalf  +secondString+  secondHalf);
+    return firstHalf+secondString+ secondHalf;
 }
 
-solve()
+Switch (`Hawai::RomeCyprys-Greece` , `Hawai` , `Bulgaria`)
