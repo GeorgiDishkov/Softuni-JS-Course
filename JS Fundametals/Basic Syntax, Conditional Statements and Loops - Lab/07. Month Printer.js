@@ -19,4 +19,3 @@ function solve(input) {
         console.log(`Error!`);
     }
 }
-solve (3)
