@@ -4,7 +4,12 @@ function solve(input) {
     let Actions = {
         Rate(currentPlant, currentRating) {
             if (Plants.hasOwnProperty(currentPlant)) {
-                Plants[currentPlant].rating.push(Number(currentRating))
+                if (Plants[currentPlant].rating[0] == 0){
+                    Plants[currentPlant].rating.shift();
+                    Plants[currentPlant].rating.push(Number(currentRating));
+
+                }
+                Plants[currentPlant].rating.push(Number(currentRating));
 
             } else {
                 console.log(`error`);
@@ -14,7 +19,7 @@ function solve(input) {
             if (Plants.hasOwnProperty(currentPlant)) {
                 Plants[currentPlant].rarity = Number(currentRarity);
             } else {
-                console.log(`error`); 
+                console.log(`error`);
             }
         },
         Reset(currentPlant) {
@@ -25,6 +30,7 @@ function solve(input) {
             }
         }
     };
+    // sorted by desending rarity then rating
     function desendingSort(currentPlant) {
         for (const line of currentPlant) {
             let rating = Plants[line].rating
@@ -37,21 +43,24 @@ function solve(input) {
         }
         return currentPlant.sort((a, b) => Plants[b].rarity - Plants[a].rarity || Plants[b].rating - Plants[a].rating)
     }
+    //take plants from input
     for (let i = 0; i < lines; i++) {
         let [currentPlant, currentRarity] = input[0].split(`<->`)
-        Plants[currentPlant] = {
+        if(!Plants.hasOwnProperty(currentPlant)){
+            Plants[currentPlant] = {
             rarity: Number(currentRarity),
             rating: []
-        };
+            };
+        }
         input.shift();
     }
+    //take comands and make fixes
     for (let line of input) {
         if (line == `Exhibition`) {
             break;
         }
         let [command, ...items] = line.match(/\w*[^: -]/g)
-
-        Actions[command](...items)
+            Actions[command](...items)
     }
     let sorted = Object.keys(Plants);
     desendingSort(sorted)
@@ -70,11 +79,14 @@ solve(["3",
     "Rate: Woodii - 5",
     "Update: Woodii - 5",
     "Reset: Arnoldii",
+    "Rate: Arnoldii - 3",
     "Exhibition"])
 console.log(`-------`);
-solve(["2",
+solve(["3",
     "Candelabra<->10",
-    "Oahu<->10",
+    "Nowini<->10",
+    "Oahu<->9",
     "Rate: Oahu - 7",
+    "Rate: Nowini - 7",
     "Rate: Candelabra - 6",
     "Exhibition"])
