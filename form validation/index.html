@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <title>Form Validation</title>
+</head>
+
+<body>
+  <div class="container">
+    <form class="form" id="form">
+      <div class="form-control">
+        <label>Text</label>
+        <input type="text" placeholder="Enter text" id="textid" />
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <div class="error"></div>
+        <small>Text contains number or is empty!</small>
+      </div>
+
+      <div class="form-control">
+        <label>Number</label>
+        <input type="text" placeholder="Enter number" id="numid" />
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <div class="error"></div>
+        <small>Not a number!</small>
+      </div>
+
+      <div class="form-control">
+        <label>Choose:</label>
+        <div>
+          <select name="cars" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+        <div class="error"></div>
+      </div>
+
+
+      <div class="form-radio-checkbox">
+        <label>Radio Buttons</label>
+        <div class="radio-checkbox">
+          <input type="radio" id="r1" name="radio" value="radio1" /><span>radio-button1</span>
+          <div>
+            <input type="radio" id="r2" name="radio" value="radio2" /><span>radio-button2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-radio-checkbox">
+        <label>Checkbox</label>
+        <div class="radio-checkbox">
+          <input type="checkbox" id="ch1" name="checkbox1" value="checkbox1" /><span>checkbox1</span>
+          <div>
+            <input type="checkbox" id="ch2" name="checkbox2" value="checkbox2" /><span>checkbox2</span>
+          </div>
+        </div>
+      </div>
+      <input class="button" type="submit" name="submit" value="Submit" />
+
+      <div class="form-control">
+        <textarea id="resid" name="resid" rows="4"></textarea>
+      </div>
+    </form>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
