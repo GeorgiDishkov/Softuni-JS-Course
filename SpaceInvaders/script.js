@@ -13,3 +13,4 @@ let spireBase64 = "data:image/png;base64,space-invaders-bootlogo-340338.png"
 const tank = new Image();
 tank.src = spireBase64;
 const invaders
+
