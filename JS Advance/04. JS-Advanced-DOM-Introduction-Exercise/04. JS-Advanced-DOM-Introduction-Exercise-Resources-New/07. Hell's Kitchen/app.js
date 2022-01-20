@@ -38,7 +38,7 @@ function solve() {
          workersResult.push(`Name: ${line[0]} With Salary: ${line[1]} `);
          averageSalary += Number(line[1]);
       }
-      document.querySelector(`#bestRestaurant p`).textContent = (`Name: ${winnerResturant} Average Salary: ${(averageSalary/sortedWorkers.length).toFixed(2)} Best Salary: ${bestWorker}`); 
+      document.querySelector(`#bestRestaurant p`).textContent = (`Name: ${winnerResturant} Average Salary: ${(averageSalary/sortedWorkers.length).toFixed(2)} Best Salary: ${bestWorker.toFixed(2)}`); 
       for (const line of workersResult) {
          document.querySelector(`#workers p`).textContent += line;
       }
