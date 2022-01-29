@@ -10,7 +10,7 @@ function attachEventsListeners() {
         millimeters : 1000,
         miles : 0.000621371,
         yards : 1.094,
-        feet :  3.28084,
+        feet :  3.281,
         inches : 39.3701,
     }
     
