@@ -15,6 +15,8 @@ function attachEventsListeners() {
     }
     
     function onClick () {
+        output.value = ``;
+
         let choiceOne = document.getElementById(`inputUnits`);
         let convertFrom = choiceOne.options[choiceOne.selectedIndex].text.toLowerCase();
         
@@ -23,11 +25,10 @@ function attachEventsListeners() {
         console.log(convertTo);
         let result = 0;
         let isNumber = Number(input.value);
-        if (!(isNaN(isNumber))){
+        if ((!(isNaN(isNumber)))&& isNumber != ``) {
             result += isNumber/types[convertFrom];
             output.value = result * types[convertTo];
              
         }
     }
-
 }
