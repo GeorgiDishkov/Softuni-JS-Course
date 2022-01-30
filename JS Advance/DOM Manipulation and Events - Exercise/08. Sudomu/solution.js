@@ -2,7 +2,6 @@ function solve() {
     const rows = Array.from(document.querySelectorAll(`tbody tr td`));
     const buttons = document.getElementsByTagName(`tfoot`)[0].addEventListener('click', onClick);
 
-    
     function onClick(e) {
         let winGame = true;
         let text = e.target.textContent;
@@ -34,7 +33,6 @@ function solve() {
                     break;
                 }
             }
-
             for (let i = 1; i <= 3; i++) {
                 let firstNumber = Number(rows[i - 1].children[0].value);
                 let secondNumber = Number(rows[i + 2].children[0].value);
@@ -94,7 +92,6 @@ function solve() {
                 answere.textContent = `NOP! You are not done yet...`;
                 answere.style.color = 'red'
             }
-
         } else if (text == `Clear`) {
             for (const element of rows) {
                 element.children[0].value = ``;
