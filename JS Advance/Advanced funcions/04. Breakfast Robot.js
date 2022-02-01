@@ -1,4 +1,6 @@
-function solve(input) {
+function solution() {
+    let success = `Success`
+    let error;
     let products = {
         apple: {
             carbohydrate: 1,
@@ -25,16 +27,10 @@ function solve(input) {
             flavour: 10,
         }
     }
-    let microelements = {
-        protein: 0,
-        carbohydrate: 0,
-        fat: 0,
-        flavour: 0,
-    }
     let actuions = {
         restock(stock, quality) {
             microelements[stock] += Number(quality);
-            console.log(`Success`);
+            return success;
         },
         prepare(recept, quality) {
             let make = true;
@@ -46,8 +42,8 @@ function solve(input) {
                 neededQuality = neededQuality * Number(quality)
                 if (!(curentQuality >= neededQuality)) {
                     make = false;
-                    console.log(`Error: not enough ${micro} in stock`);
-                    break;
+                    error = (`Error: not enough ${micro} in stock`);
+                    return error;
                 }
             }
             if (make) {
@@ -56,31 +52,32 @@ function solve(input) {
                     let neededQuality = products[recept][micro];
                     neededQuality = neededQuality * Number(quality)
                     microelements[micro] -= neededQuality;
-
-                }
-                console.log(`Success`);
+                } 
+                return success;
             }
         },
         report() {
             let result = ``;
             Object.keys(microelements).forEach(key => result += (`${key}=${microelements[key]} `));
-            console.log(result);
+            return result;
         }
     }
-    for (const line of input) {
-        let [comand, type, quality] = line.split(' ');
-        actuions[comand](type, quality);
+    let microelements = {
+        protein: 0,
+        carbohydrate: 0,
+        fat: 0,
+        flavour: 0,
+    }
+    return (input) => {
+        let [comand, type, quality] = input.split(' ');
+        return (actuions[comand](type, quality));
     }
 }
 
-solve([`prepare turkey 1`,
-    `restock protein 10`,
-    `prepare turkey 1`,
-    `restock carbohydrate 10`,
-    `prepare turkey 1`,
-    `restock fat 10`,
-    `prepare turkey 1`,
-    `restock flavour 10`,
-    `prepare turkey 1`,
-    `report`
-])
+let manager = solution();
+console.log(manager('restock flavour 10')); 
+console.log(manager('restock carbohydrate 10'));
+console.log(manager('prepare apple 1')); 
+console.log(manager('restock fat 10')); 
+console.log(manager('prepare burger 1')); 
+console.log(manager('report')); 

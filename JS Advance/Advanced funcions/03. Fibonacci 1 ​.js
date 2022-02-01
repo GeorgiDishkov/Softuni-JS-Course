@@ -1,6 +1,14 @@
 function getFibonator() { 
-
-    return 
+    function getFibonator() { 
+        let a = 0;
+        let b = 1;
+        return () => {
+            let c = a+b;
+            a = b;
+            b = c;  
+            return a  
+        }
+    }  
 }   
 
 let fib = getFibonator();
