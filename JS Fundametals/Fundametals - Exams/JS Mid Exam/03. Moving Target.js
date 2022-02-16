@@ -27,7 +27,7 @@ function solve(input){
                 console.log(`Strike missed!`);
             }
         },
-        }
+        } 
 for (const line of input){
     if(line == `End`){
         break;
