@@ -26,6 +26,7 @@ function solve(input) {
             if (life <= 0) {
                 live = false;
                 console.log(`You died! Killed by ${enemy}.`);
+                console.log(`Best room: ${room}`);
             } else {
                 console.log(`You slayed ${enemy}.`);
             }
@@ -33,7 +34,6 @@ function solve(input) {
     }
     for (const line of rooms) {
         if (!live) {
-            console.log(`Best room: ${room}`);
             break;
         }
         room++;
@@ -50,6 +50,7 @@ function solve(input) {
         console.log(`Health: ${life}`);
     }
 }
-solve("rat 10|bat 20|potion 10|rat 10|chest 100|boss 70|chest 1000");
+solve("rat 10|bat 20|potion -2|rat 10|chest 100|boss 70|chest 1000");
 console.log(`=========================`);
-solve("cat 10|potion 30|orc 10|chest 10|snake 25|chest 110");
+// solve("cat 10|potion 30|orc 10|chest 10|snake 25|chest 110");
+solve("rat 100|potion -2")
