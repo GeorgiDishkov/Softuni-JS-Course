@@ -1,0 +1,22 @@
+:root {
+    --position : 50%;
+}
+div {
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+}
+
+#plane {
+    position: absolute;
+    left: var(--position);
+    bottom: 5%;
+}
