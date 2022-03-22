@@ -23,10 +23,3 @@ function solve(totlaLosts, helmPrice, swordPrice, shieldPrice, armorPrice) {
     }
     console.log(`Gladiator expenses: ${sum.toFixed(2)} aureus`);
 }
-
-solve(23,
-    12.50,
-    21.50,
-    40,
-    200
-)
