@@ -22,6 +22,5 @@ function makeADictionary(arr) {
     }
     resultObj.forEach(element => {
         console.log(`Term: ${element.terms} => Definition: ${element.description}`);
-
     });
 }

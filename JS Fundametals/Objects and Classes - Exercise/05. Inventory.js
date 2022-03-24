@@ -4,7 +4,7 @@ function invenotry(arr) {
     for (const itam of arr) {
         let [heroName, heroLevel,itams] = itam.split(` / `)
         itams =  itams.split(`, `)
-        .sort((a , b) => a.localeCompare (b))
+        .sort((a , b) => b.localeCompare(a))
         .join(`, `)
         game.push({
             heroName,
@@ -19,3 +19,7 @@ function invenotry(arr) {
         console.log(`items => ${element.itams}`);
     });
 }
+
+invenotry ([`Isacc / 25 / Apple, GravityGun`,
+`Derek / 12 / BarrelVest, DestructionSword`,`
+Hes / 1 / Desolator, Sentinel, Antara`])
