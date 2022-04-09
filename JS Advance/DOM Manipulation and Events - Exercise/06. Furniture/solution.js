@@ -54,7 +54,7 @@ function solve() {
         sum += Number(parent.children[2].textContent);
         dFactor += Number(parent.children[3].textContent);
       }
-      output.value = (`Bought furniture: ${products.join`, `}\nTotal price: ${sum}\nAverage decoration factor: ${dFactor/checked.length}`)
+      output.value = (`Bought furniture: ${products.join`, `}\nTotal price: ${sum}\nAverage decoration factor: ${(dFactor/checked.length).toFixed(2)}`)
     }
   }
 }
