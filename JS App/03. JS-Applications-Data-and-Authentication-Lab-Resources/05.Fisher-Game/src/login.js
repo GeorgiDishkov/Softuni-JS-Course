@@ -1,22 +1,42 @@
+import { auth } from './auth.js';
 
-const url = `http://localhost:3030/users/login`
 export function login() {
-    let options = {
-        method: 'GET',
-        
-    }
-    fetch(url)
+    document.getElementById(`login-view`).style.display = 'block';
+    takeInfo()
 }
-function getInfo() {
-
-    const form = document.querySelector(`form`);
-    form.addEventListener(`submit`, (e) => {
+function takeInfo() {
+    // if (!window.localStorage) {
+    let loginForm = document.querySelector(`form#login`);
+    loginForm.addEventListener(`submit`, (e) => {
         e.preventDefault();
-        let formData = new FormData(form);
-        let email = formData.get('email');
-        let password = formData.get('password');
-        console.log(email,password);
-        login(email,password);
+        let dataForm = new FormData(loginForm);
+        let email = dataForm.get(`email`);
+        let password = dataForm.get(`password`);
+        loginReq(email, password);
     })
 }
-getInfo();
+export function loginReq(email, password) {
+    let data = {
+        email,
+        password,
+    }
+    let options = {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    }
+    // console.log(data);
+    fetch(`http://localhost:3030/users/login`, options).then(res => {
+        res.json().then(anth => {
+            console.log(anth);
+            let nameEmail = anth.email
+            console.log(nameEmail);
+            if (nameEmail !== undefined) {
+                window.localStorage.setItem(`username`, (nameEmail));
+                auth(nameEmail);
+            } else {
+                alert(anth.message)
+            }
+        })
+    })
+}
