@@ -6,16 +6,16 @@
 // implement views
 // - create request logic
 // - DOM manipulation logic
-// [ ] catalog
+// [X] catalog
 // [x] login
-// [ ] register
-// [ ] create
-// [ ] details
+// [X] register
+// [X] create
+// [X] details
 // [ ] like
 // [ ] edit
 // [ ] delete
 
-import { naviUpdate } from './router.js';
+import { naviUpdate } from './units.js';
 import { viewHome } from './home.js';
 import { viewAddMovie } from './addMovie.js';
 import { details } from './details.js';
@@ -28,7 +28,7 @@ document.querySelector("#add-movie-button").addEventListener("click", onNavigate
 const link = {
     "/home": viewHome,
     "/add-movie": viewAddMovie,
-    "/movie-example": details,
+    "/details": details,
     "/edit-move": editMovie,
     "/login": viewLogin,
     "/register": viewRegister,
@@ -37,8 +37,8 @@ const link = {
 
 
 function onNavigate(e) {
+    e.preventDefault();
     if (e.target.tagName == `A` && e.target.href) {
-        e.preventDefault();
         let path = new URL(e.target.href);
         let view = link[path.pathname];
         view();

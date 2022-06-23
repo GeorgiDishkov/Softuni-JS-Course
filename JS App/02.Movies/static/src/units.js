@@ -13,6 +13,11 @@ let guestItams = [...document.querySelectorAll(`#guest`)];
 
 export function naviUpdate () {
     if(localStorage.getItem("user")){
+        let user = JSON.parse(localStorage.getItem("user"));
+        window.accessToken = user.accessToken
+        let wellcomeText = userItams[0].children
+        let userObj = JSON.parse(localStorage.getItem("user"))
+        wellcomeText[0].textContent = `Welcome, ${userObj.username}`;
         userItams.forEach((e)=> e.style.display = ``)
         guestItams.forEach((e)=> e.style.display = `none`)
     }else{
