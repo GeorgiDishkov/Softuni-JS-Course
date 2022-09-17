@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Collection from "./components/Colllection";
+import Collection from "./components/collection/Colllection";
 import Create from "./components/Create";
 import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
