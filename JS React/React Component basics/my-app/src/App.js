@@ -1,4 +1,6 @@
+import Counter from './components/counter'
 import './App.css';
+
 
 function App() {
   return (
@@ -7,11 +9,11 @@ function App() {
         <h1>ToDo App</h1>
       </header>
       <main>
-
+        <Counter />
       </main>
 
       <footer>
-        <p>All rights reserved &cop y;</p>
+        <p>All rights reserved &copy;</p>
       </footer>
     </div>
   );
