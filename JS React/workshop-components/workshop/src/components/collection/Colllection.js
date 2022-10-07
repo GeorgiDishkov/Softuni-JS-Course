@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { getFirstThree } from "../../services/reqester";
 import CollectionTemplate from "./CollectionTemplate";
 
-const Collection = () => {
+const Collection = ({
+    rootChangeEventHendler,
+}) => {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
@@ -25,7 +27,7 @@ const Collection = () => {
                 <h1>Latest Games</h1>
                 {
                     games.length > 0
-                        ? games.map(x => <CollectionTemplate key={x._id} data={x} />)
+                        ? games.map(x => <CollectionTemplate key={x._id} data={x} rootChangeEventHendler={rootChangeEventHendler} />)
                         : <p className="no-articles">No games yet</p>
                 }
             </div>

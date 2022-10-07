@@ -1,12 +1,5 @@
-const CollectionTemplate = ({
-    data,
-    rootChangeEventHendler
-}) => {
-
-    function onclick(e) {
-        e.preventDefoult();
-        rootChangeEventHendler(e.target.href)
-    }
+const HomeGame = ({ data }) => {
+    console.log(data._id);
     return (
         <div className="game">
             <div className="image-wrap">
@@ -17,10 +10,10 @@ const CollectionTemplate = ({
                 <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
             </div>
             <div className="data-buttons">
-                <a href={`/details/${data._id}`} onclick={onclick} className="btn details-btn">Details</a>
+                <a href={`/details/${data._id}`} className="btn details-btn">Details</a>
             </div>
-        </div >
+        </div>
     )
 }
 
-export default CollectionTemplate;
+export default HomeGame;

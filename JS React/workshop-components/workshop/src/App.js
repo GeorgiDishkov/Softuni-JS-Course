@@ -5,8 +5,8 @@ import Create from "./components/Create";
 import Header from "./components/Header";
 import LoginPage from "./components/LoginPage";
 import Register from "./components/Register";
-// import Edit from "./components/Edit"
-// import GameDetails from "./components/GameDetails";
+import Edit from "./components/Edit"
+import GameDetails from "./components/GameDetails";
 import Catalogue from "./components/Catalog";
 
 
@@ -14,29 +14,31 @@ function App() {
 
   const [page, setPage] = useState(`/`);
 
+
+  const rootChangeEvent = (e) => {
+    e.preventDefault();
+    if (e.target.tagName == "A" || e.target.tagName == "BUTTON") {
+      const path = new URL(e.target)
+      const splitedPath = path.pathname.split(`/`)
+      console.log(splitedPath[1], splitedPath);
+      setPage(path.pathname);
+    }
+  }
   const routes = {
-    "/": <Collection />,
+    "/": <Collection rootChangeEvent={rootChangeEvent} />,
     "/login": <LoginPage />,
     "/register": <Register />,
     "/create": <Create />,
     "/catalog": <Catalogue />,
-    // "/edit": <Edit />,
-    // "/game-detail": <GameDetails />,
-  }
-
-  const router = (e) => {
-    e.preventDefault();
-    if (e.target.tagName == "A") {
-      const path = new URL(e.target)
-      setPage(path.pathname);
-    }
+    "/edit": <Edit />,
+    "/details": <GameDetails />,
   }
 
 
   return (
     <div id="box">
 
-      <Header router={router} />
+      <Header router={rootChangeEvent} />
 
       <main id="main-content">
         {routes[page]}
