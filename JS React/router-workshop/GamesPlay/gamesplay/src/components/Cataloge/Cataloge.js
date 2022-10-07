@@ -1,39 +1,23 @@
+import { useLoaderData } from "react-router-dom";
+import { getCatalogeGames } from "../../util/apiReqests";
+import CatalogeGame from "./CatalogeGame";
+
 const Cataloge = () => {
+    const { data } = useLoaderData();
+    console.log(data);
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
-            {/* <!-- Display div: with information about every game (if any) --> */}
-            <div className="allGames">
-                <div className="allGames-info">
-                    <img src="./images/avatar-1.jpg" />
-                    <h6>Action</h6>
-                    <h2>Cover Fire</h2>
-                    <a href="#" className="details-button">Details</a>
-                </div>
-
-            </div>
-            <div className="allGames">
-                <div className="allGames-info">
-                    <img src="./images/avatar-1.jpg" />
-                    <h6>Action</h6>
-                    <h2>Zombie lang</h2>
-                    <a href="#" className="details-button">Details</a>
-                </div>
-
-            </div>
-            <div className="allGames">
-                <div className="allGames-info">
-                    <img src="./images/avatar-1.jpg" />
-                    <h6>Action</h6>
-                    <h2>MineCraft</h2>
-                    <a href="#" className="details-button">Details</a>
-                </div>
-            </div>
-
-            {/* <!-- Display paragraph: If there is no games  --> */}
-            <h3 className="no-articles">No articles yet</h3>
+            {
+                data.length > 0 ? data.map(e => <CatalogeGame key={e._id} data={e} />) : <h1>No articles yet</h1>
+            }
         </section>
     )
 }
 
 export default Cataloge;
+
+export async function loader() {
+    const data = await getCatalogeGames();
+    return { data };
+}

@@ -1,5 +1,4 @@
 const HomeGame = ({ data }) => {
-    console.log(data._id);
     return (
         <div className="game">
             <div className="image-wrap">

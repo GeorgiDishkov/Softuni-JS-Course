@@ -1,10 +1,9 @@
 import { useLoaderData } from "react-router-dom";
-import { getAllGames } from "../../util/apiReqests";
+import { getHomeGames } from "../../util/apiReqests";
 import HomeGame from "./HomeGame";
 
 export default function Home() {
     const { data } = useLoaderData();
-    console.log(data.length);
     return (
         <section id="welcome-world">
 
@@ -17,8 +16,8 @@ export default function Home() {
             <div id="home-page">
                 <h1>Latest Games</h1>
                 {
-                    data.length > 0 ?
-                        data.map(e => <HomeGame data={e} />)
+                    data.length > 0
+                        ? data.map(e => <HomeGame data={e} key={e._id} />)
                         : < p className="no-articles">No games yet</p>
 
                 }
@@ -28,6 +27,6 @@ export default function Home() {
 }
 
 export async function loader() {
-    const data = await getAllGames();
+    const data = await getHomeGames();
     return { data };
 }

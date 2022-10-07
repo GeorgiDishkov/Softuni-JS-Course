@@ -1,4 +1,9 @@
+import { useLoaderData } from "react-router-dom";
+import { getElementById } from "../../util/apiReqests";
+
 const EditPage = () => {
+    const { data } = useLoaderData();
+    console.log(data);
     return (
         <section id="edit-page" className="auth">
             <form id="edit">
@@ -6,7 +11,7 @@ const EditPage = () => {
 
                     <h1>Edit Game</h1>
                     <label htmlFor="leg-title">Legendary title:</label>
-                    <input type="text" id="title" name="title" value="" />
+                    <input type="text" id="title" name="title" value={data.title} />
 
                     <label htmlFor="category">Category:</label>
                     <input type="text" id="category" name="category" value="" />
@@ -28,3 +33,9 @@ const EditPage = () => {
 }
 
 export default EditPage;
+
+export async function loader({ params }) {
+    const data = await getElementById(params.id);
+    console.log(data);
+    return { data };
+}

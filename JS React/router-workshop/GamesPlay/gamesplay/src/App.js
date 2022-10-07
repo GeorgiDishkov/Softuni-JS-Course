@@ -5,12 +5,11 @@ import Home, { loader as homeLoader } from './components/Home/Home';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import CreatePage from './components/Create/CreatePage';
-import Cataloge from './components/Cataloge/Cataloge';
+import Cataloge, { loader as catalogeLoader } from './components/Cataloge/Cataloge';
 import ErrorPage from './components/ErrorPage/ErrorPage';
-import Details from "./components/Details/DetailsPage";
+import DetailsPage, { loader as detailLoader } from './components/Details/DetailsPage';
 import './App.css';
-
-homeLoader();
+import EditPage, { loader as editLoader } from './components/EditPage/EditPage';
 
 const router = createBrowserRouter([
   {
@@ -32,12 +31,20 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
+    path: "/edit/:id",
+    element: <EditPage />,
+    loader: editLoader,
+  },
+  {
     path: "/cataloge",
     element: <Cataloge />,
+    loader: catalogeLoader,
+    errorElement: <ErrorPage />
   },
   {
     path: "/details/:id",
-    element: <Details />
+    element: <DetailsPage />,
+    loader: detailLoader,
   },
 ]);
 function App() {
