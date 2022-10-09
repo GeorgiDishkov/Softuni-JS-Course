@@ -28,9 +28,21 @@ async function getElementById(id) {
     }
 }
 
+async function editPage(id, data) {
+    console.log(id);
+    console.log(data);
+    const update = await fetch(`http://localhost:3030/data/games/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    })
+    console.log(update);
+}
+
 
 export {
     getHomeGames,
     getElementById,
-    getCatalogeGames
+    getCatalogeGames,
+    editPage,
 }

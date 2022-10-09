@@ -1,34 +1,33 @@
-import { useLoaderData } from "react-router-dom";
-import { getElementById } from "../../util/apiReqests";
+import { useLoaderData, Form, redirect } from "react-router-dom";
+import { editPage, getElementById } from "../../util/apiReqests";
 
 const EditPage = () => {
     const { data } = useLoaderData();
-    console.log(data);
     return (
         <section id="edit-page" className="auth">
-            <form id="edit">
+            <Form id="edit" method="POST">
                 <div className="container">
 
                     <h1>Edit Game</h1>
                     <label htmlFor="leg-title">Legendary title:</label>
-                    <input type="text" id="title" name="title" value={data.title} />
+                    <input type="text" id="title" name="title" defaultValue={data.title} />
 
                     <label htmlFor="category">Category:</label>
-                    <input type="text" id="category" name="category" value="" />
+                    <input type="text" id="category" name="category" defaultValue={data.category} />
 
                     <label htmlFor="levels">MaxLevel:</label>
-                    <input type="number" id="maxLevel" name="maxLevel" min="1" value="" />
+                    <input type="number" id="maxLevel" name="maxLevel" min="1" defaultValue={data.maxLevel} />
 
                     <label htmlFor="game-img">Image:</label>
-                    <input type="text" id="imageUrl" name="imageUrl" value="" />
+                    <input type="text" id="imageUrl" name="imageUrl" defaultValue={data.imageUrl} />
 
                     <label htmlFor="summary">Summary:</label>
-                    <textarea name="summary" id="summary"></textarea>
+                    <textarea name="summary" id="summary" defaultValue={data.summary}></textarea>
                     <input className="btn submit" type="submit" value="Edit Game" />
 
                 </div>
-            </form>
-        </section>
+            </Form>
+        </section >
     )
 }
 
@@ -36,6 +35,13 @@ export default EditPage;
 
 export async function loader({ params }) {
     const data = await getElementById(params.id);
-    console.log(data);
     return { data };
+}
+
+// TO DO WITH ACCOUNT
+export async function action({ request, params }) {
+    // const formData = await request.formData();
+    // const updates = Object.fromEntries(formData);
+    // const answere = await editPage(params.id, update);
+    // return redirect(`/catalog/${params.contactId}`);
 }
