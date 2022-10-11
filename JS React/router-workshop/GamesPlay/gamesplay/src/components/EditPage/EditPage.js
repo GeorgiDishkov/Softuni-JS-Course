@@ -1,8 +1,12 @@
-import { useLoaderData, Form, redirect } from "react-router-dom";
+import { useLoaderData, Form, redirect, Outlet, useOutletContext } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 import { editPage, getElementById } from "../../util/apiReqests";
 
 const EditPage = () => {
     const { data } = useLoaderData();
+    const { user } = useAuthContext();
+
+
     return (
         <section id="edit-page" className="auth">
             <Form id="edit" method="POST">
@@ -25,6 +29,7 @@ const EditPage = () => {
                     <textarea name="summary" id="summary" defaultValue={data.summary}></textarea>
                     <input className="btn submit" type="submit" value="Edit Game" />
 
+                    <Outlet context={{ user }} />
                 </div>
             </Form>
         </section >
@@ -42,6 +47,7 @@ export async function loader({ params }) {
 export async function action({ request, params }) {
     // const formData = await request.formData();
     // const updates = Object.fromEntries(formData);
+    // console.log(updates);
     // const answere = await editPage(params.id, update);
     // return redirect(`/catalog/${params.contactId}`);
 }

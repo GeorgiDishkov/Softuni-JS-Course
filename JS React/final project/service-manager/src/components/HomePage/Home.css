@@ -1,0 +1,15 @@
+a {
+    color: #830202;
+    padding: 10px;
+    border: solid;
+    margin: 10px;
+    border-radius: 35%;
+}
+a:hover {
+    background-color: #830202;
+    color: aqua;
+}
+
+h1 { 
+    color: #830202;
+}

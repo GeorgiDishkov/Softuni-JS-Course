@@ -1,4 +1,4 @@
-
+import { AuthProvider } from './context/AuthContext';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Header from './components/Header/Header'
 import Home, { loader as homeLoader } from './components/Home/Home';
@@ -10,6 +10,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import DetailsPage, { loader as detailLoader } from './components/Details/DetailsPage';
 import EditPage, { loader as editLoader, action as editAction } from './components/EditPage/EditPage';
 import './App.css';
+
 
 const router = createBrowserRouter([
   {
@@ -48,14 +49,19 @@ const router = createBrowserRouter([
     loader: detailLoader,
   },
 ]);
+
 function App() {
+
   return (
-    <div id="box">
-      <Header />
-      <main id="main-content">
-        <RouterProvider router={router} />
-      </main>
-    </div>
+    <AuthProvider>
+      <div id="box">
+        <Header />
+        <main id="main-content">
+          <RouterProvider router={router} />
+        </main>
+      </div>
+    </AuthProvider>
+
   );
 }
 

@@ -39,10 +39,21 @@ async function editPage(id, data) {
     console.log(update);
 }
 
+async function loginApi(authData) {
+    const response = await fetch(`${URL}/users/login`, {
+        method: "POST",
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(authData)
+    })
+    return response.json();
+}
 
 export {
     getHomeGames,
     getElementById,
     getCatalogeGames,
     editPage,
+    loginApi,
 }
