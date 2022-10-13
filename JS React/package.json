@@ -1,8 +1,9 @@
 {
   "dependencies": {
+    "firebase": "^9.12.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
-    "react-router-dom": "^6.4.1",
+    "react-router-dom": "^6.4.2",
     "sort-by": "^1.2.0",
     "uniqid": "^5.4.0"
   }

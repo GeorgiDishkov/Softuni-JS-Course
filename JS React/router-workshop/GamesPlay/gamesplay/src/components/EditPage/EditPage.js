@@ -1,15 +1,23 @@
-import { useLoaderData, Form, redirect, Outlet, useOutletContext } from "react-router-dom";
+import { useLoaderData, Form, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import { editPage, getElementById } from "../../util/apiReqests";
 
 const EditPage = () => {
-    const { data } = useLoaderData();
+    const { data, id } = useLoaderData();
     const { user } = useAuthContext();
+    const navigate = useNavigate();
+    const onEdit = async (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(e.currentTarget));
+        const result = await editPage(id, data, user.accessToken);
+        console.log(result);
+        navigate(`/details/${id}`);
+    }
 
 
     return (
         <section id="edit-page" className="auth">
-            <Form id="edit" method="POST">
+            <Form id="edit" method="POST" onSubmit={onEdit}>
                 <div className="container">
 
                     <h1>Edit Game</h1>
@@ -29,7 +37,6 @@ const EditPage = () => {
                     <textarea name="summary" id="summary" defaultValue={data.summary}></textarea>
                     <input className="btn submit" type="submit" value="Edit Game" />
 
-                    <Outlet context={{ user }} />
                 </div>
             </Form>
         </section >
@@ -40,14 +47,8 @@ export default EditPage;
 
 export async function loader({ params }) {
     const data = await getElementById(params.id);
-    return { data };
-}
-
-// TO DO WITH ACCOUNT
-export async function action({ request, params }) {
-    // const formData = await request.formData();
-    // const updates = Object.fromEntries(formData);
-    // console.log(updates);
-    // const answere = await editPage(params.id, update);
-    // return redirect(`/catalog/${params.contactId}`);
+    return {
+        data,
+        id: params.id
+    };
 }

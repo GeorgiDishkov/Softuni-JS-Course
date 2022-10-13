@@ -1,4 +1,4 @@
-import { redirect, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../context/AuthContext';
 import { loginApi } from '../../util/apiReqests'
 
@@ -13,8 +13,8 @@ const Login = () => {
         let formData = new FormData(e.currentTarget);
         const authData = Object.fromEntries(formData);
         const result = await loginApi(authData);
-        console.log(authData);
-        login(authData);
+        console.log(result);
+        login(result);
 
         navigate(`/`)
     }

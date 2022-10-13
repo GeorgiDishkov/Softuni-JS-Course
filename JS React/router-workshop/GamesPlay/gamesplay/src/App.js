@@ -8,8 +8,7 @@ import CreatePage from './components/Create/CreatePage';
 import Cataloge, { loader as catalogeLoader } from './components/Cataloge/Cataloge';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import DetailsPage, { loader as detailLoader } from './components/Details/DetailsPage';
-import EditPage, { loader as editLoader, action as editAction } from './components/EditPage/EditPage';
-import './App.css';
+import EditPage, { loader as editLoader } from './components/EditPage/EditPage';
 
 
 const router = createBrowserRouter([
@@ -35,7 +34,6 @@ const router = createBrowserRouter([
     path: "/edit/:id",
     element: <EditPage />,
     loader: editLoader,
-    action: editAction,
   },
   {
     path: "/cataloge",
@@ -53,14 +51,14 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <AuthProvider>
+    <AuthProvider >
       <div id="box">
         <Header />
         <main id="main-content">
           <RouterProvider router={router} />
         </main>
       </div>
-    </AuthProvider>
+    </AuthProvider >
 
   );
 }

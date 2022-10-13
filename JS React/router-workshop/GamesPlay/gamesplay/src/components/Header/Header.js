@@ -1,13 +1,14 @@
 import { useAuthContext } from "../../context/AuthContext"
+import { logoutApi } from "../../util/apiReqests";
 
 const Header = () => {
+    const { logout } = useAuthContext();
     const { isAuthenticated } = useAuthContext();
-    console.log(isAuthenticated);
     const LogedUsers = () => {
         return (
             <div id="user">
                 <a href="/create">Create Game</a>
-                <a href="/logout">Logout</a>
+                <a href="/logout" onClick={onLogout}>Logout</a>
             </div>
         )
     }
@@ -19,6 +20,12 @@ const Header = () => {
                 <a href="/register">Register</a>
             </div>
         )
+    }
+
+    const onLogout = async (e) => {
+        e.preventDefault();
+        logoutApi();
+        logout();
     }
 
     return (
